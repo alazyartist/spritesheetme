@@ -38,13 +38,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <div className="dark flex w-[100vw] flex-col items-center justify-center text-white">
+        <div className="dark flex w-[100vw] max-w-[calc(100vw-1.25rem)] flex-col items-center justify-center text-white">
           <Header />
           <SidebarProvider>
             <AppSideBar />
-            <div className="h-full w-full">
-              <SidebarTrigger className="absolute top-16" />
-              <TRPCReactProvider>{children}</TRPCReactProvider>
+            <div className="h-full w-full pl-2">
+              <SidebarTrigger className="fixed top-16" />
+              <TRPCReactProvider>
+                <div className="mt-16 h-[calc(100vh-4.5rem)] rounded-md border pl-8 pt-2">
+                  {children}
+                </div>
+              </TRPCReactProvider>
             </div>
           </SidebarProvider>
         </div>
@@ -69,7 +73,7 @@ const AppSideBar = () => {
   const items = [
     {
       title: "Create",
-      url: "/create",
+      url: "/",
       icon: () => <ImagePlusIcon />,
     },
     {
